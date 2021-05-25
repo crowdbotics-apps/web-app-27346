@@ -108,6 +108,6 @@ class SubscriptionSerializer(serializers.ModelSerializer):
         read_only_fields = [ 'id', 'user', 'created_at', 'updated_at' ]
 
     def validate(self, attrs):
-        print(attrs)
         if Subscription.objects.filter(app_id=attrs['app']).first():
             raise ValidationError('Subscription already exists for this app.')
+        return attrs
